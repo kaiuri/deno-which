@@ -61,7 +61,9 @@ export async function which(
         if (!all) return entry;
         entries.push(entry);
       }
-    } catch (_e) { /* pass */ }
+    } catch (_e) {
+      continue;
+    }
   }
 
   return entries;
