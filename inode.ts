@@ -29,4 +29,5 @@ export enum ModeBitMask {
 }
 
 // is Executable
-export const S_EXEC = ModeBitMask.S_IXUSR | ModeBitMask.S_IXGRP | ModeBitMask.S_IXOTH;
+export const S_EXEC = ModeBitMask.S_IXUSR | ModeBitMask.S_IXGRP |
+  ModeBitMask.S_IXOTH;
