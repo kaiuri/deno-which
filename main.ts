@@ -11,8 +11,8 @@ export const getEnv = (key: string) => {
 };
 
 /**
- * Gets path to executable.
- * With opts.all set to true, returns all matches(slower).
+ * Synchronously gets an executable's path, or paths if opts.all is true.
+ * asynchronous version is faster for opts.all = true.
  */
 export function whichSync(cmd: string): string;
 export function whichSync(
@@ -34,12 +34,16 @@ export function whichSync(
       if (!all && info.isExecutable) return entry;
       if (all && info.isExecutable) entries.push(entry);
     } catch (_e) {
-      continue
+      continue;
     }
   }
   return entries;
 }
 
+/**
+ * Asynchronously gets an executable's path, or paths if opts.all is true.
+ * Synchronous version is usually faster for opts.all = false.
+ */
 export async function which(cmd: string): Promise<string>;
 export async function which(
   cmd: string,
