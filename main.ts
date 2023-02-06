@@ -2,7 +2,8 @@ import { Path } from "./deps.ts";
 import { fileInfo, fileInfoSync } from "./file_info.ts";
 
 const stackTrace = () => new Error().stack!.split(/^\s*at\s/m)[2].trim();
-export const getEnv = (key: string) => {
+
+const getEnv = (key: string) => {
   const val = Deno.env.get(key);
   if (val === undefined) {
     throw new Error(`PATH is not defined ${stackTrace()}}`);
