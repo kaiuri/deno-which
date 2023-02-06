@@ -34,7 +34,7 @@ export function whichSync(
       if (!all && info.isExecutable) return entry;
       if (all && info.isExecutable) entries.push(entry);
     } catch (_e) {
-      // pass
+      continue
     }
   }
   return entries;
