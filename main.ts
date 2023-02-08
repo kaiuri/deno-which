@@ -1,4 +1,5 @@
 import { Path } from "./deps.ts";
+
 import { fileInfo, fileInfoSync } from "./file_info.ts";
 
 const stackTrace = () => new Error().stack!.split(/^\s*at\s/m)[2].trim();
@@ -13,7 +14,7 @@ const getEnv = (key: string) => {
 
 /**
  * Synchronously gets an executable's path, or paths if opts.all is true.
- * asynchronous version is faster for opts.all = true.
+ * Asynchronous version is faster.
  */
 export function whichSync(cmd: string): string;
 export function whichSync(
@@ -43,7 +44,7 @@ export function whichSync(
 
 /**
  * Asynchronously gets an executable's path, or paths if opts.all is true.
- * Synchronous version is usually faster for opts.all = false.
+ * Faster than the synchronous version.
  */
 export async function which(cmd: string): Promise<string>;
 export async function which(
@@ -59,12 +60,11 @@ export async function which(
   const paths = getEnv("PATH").split(Path.delimiter);
   const entries: string[] = [];
   for (const p of paths) {
-    const entry = Path.join(p, cmd);
     try {
-      const info = await fileInfo(entry);
-      if (info.isExecutable) {
-        if (!all) return entry;
-        entries.push(entry);
+      const info = await fileInfo(Path.join(p, cmd), { nothrow: true });
+      if (info !== null && info.isExecutable) {
+        if (!all) return info.filepath;
+        entries.push(info.filepath);
       }
     } catch (_e) {
       continue;
