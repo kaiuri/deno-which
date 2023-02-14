@@ -61,7 +61,7 @@ export async function which(
   const entries: string[] = [];
   for (const p of paths) {
     try {
-      const info = await fileInfo(Path.join(p, cmd), { nothrow: true });
+      const info = await fileInfo(Path.join(p, cmd));
       if (info !== null && info.isExecutable) {
         if (!all) return info.filepath;
         entries.push(info.filepath);
