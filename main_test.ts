@@ -1,7 +1,10 @@
+// @deno-types="npm:@types/which"
+import { default as node_which } from "node-which";
+
 import { which, whichSync } from "./main.ts";
-import { node_which } from "./dev_deps.ts";
+
 import { S_EXEC } from "./inode.ts";
-import { Assert } from "./deps.ts";
+import * as Assert from "asserts";
 
 const testDefinition: Omit<Deno.TestDefinition, "fn" | "name"> = {
   sanitizeOps: true,

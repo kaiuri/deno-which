@@ -1,4 +1,4 @@
-import { Path } from "./deps.ts";
+import * as Path from "path";
 
 import { fileInfo, fileInfoSync } from "./file_info.ts";
 

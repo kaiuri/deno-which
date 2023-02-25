@@ -1,5 +1,5 @@
 import { which, whichSync } from "./main.ts";
-import { node_which } from "./dev_deps.ts";
+import { default as node_which } from "node-which";
 
 // deno-fmt-ignore
 const denoWhichVsNodeWhich: Deno.BenchDefinition[] = [

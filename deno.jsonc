@@ -1,4 +1,11 @@
 {
+  "imports": {
+    "std/": "https://deno.land/std@0.178.0/",
+    "path": "https://deno.land/std@0.178.0/path/mod.ts",
+    "asserts": "https://deno.land/std@0.178.0/testing/asserts.ts",
+    "async": "https://deno.land/std@0.178.0/async/mod.ts",
+    "node-which": "npm:which"
+  },
   "tasks": {
     "dev": "deno run --watch main.ts"
   }
